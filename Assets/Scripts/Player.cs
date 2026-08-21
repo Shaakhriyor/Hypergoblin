@@ -1,23 +1,30 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class RunnerController : MonoBehaviour
 {
-    public float forwardSpeed = 8f;
-    public float steeringSpeed = 10f;
-    public float xLimit = 4.5f; // Half-width of your platform track
+    [Header("Movement Speeds")]
+    public float forwardSpeed = 10f; // Automatic constant forward movement
+    public float horizontalSpeed = 12f; // Player controlled left/right speed
+
+    [Header("Track Limits")]
+    public float trackWidthLimit = 4f; // Max distance allowed left/right from center
 
     void Update()
     {
-        // 1. Automatic constant forward motion
+        // 1. Automatic constant forward movement (Player cannot control this)
         transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime, Space.World);
 
-        // 2. Controlled horizontal movement
-        float hInput = Input.GetAxis("Horizontal");
-        Vector3 currentPos = transform.position;
-        currentPos.x += hInput * steeringSpeed * Time.deltaTime;
+        // 2. Read side-to-side input only (A/D, Left/Right arrows)
+        float sideInput = Input.GetAxis("Horizontal");
 
-        // Clamp position so player stays on the platform
-        currentPos.x = Mathf.Clamp(currentPos.x, -xLimit, xLimit);
-        transform.position = currentPos;
+        // Calculate target side movement
+        Vector3 position = transform.position;
+        position.x += sideInput * horizontalSpeed * Time.deltaTime;
+
+        // Clamp side movement so player cannot walk off track edge
+        position.x = Mathf.Clamp(position.x, -trackWidthLimit, trackWidthLimit);
+
+        // Apply constrained position
+        transform.position = position;
     }
 }

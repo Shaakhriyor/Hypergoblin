@@ -824,6 +824,7 @@ GameObject:
   - component: {fileID: 703433968}
   - component: {fileID: 703433967}
   - component: {fileID: 703433966}
+  - component: {fileID: 703433969}
   m_Layer: 0
   m_Name: GlassPanel
   m_TagString: Untagged
@@ -862,7 +863,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -893,7 +894,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 21016f6d2ec6e0e409285879810b26e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -925,6 +926,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703433964}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &703433969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703433964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d90bb4835a0a14ba532fafba176ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MathGate
+  gateType: 0
+  value: 5
+  gateText: {fileID: 0}
+  glassRenderer: {fileID: 0}
+  positiveMaterial: {fileID: 2100000, guid: 21016f6d2ec6e0e409285879810b26e7, type: 2}
+  negativeMaterial: {fileID: 2100000, guid: 57ac7511ce714c24ea8d8be2ad4f97c5, type: 2}
 --- !u!1 &749436961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1753,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300704361}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1309388312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309388314}
+  - component: {fileID: 1309388313}
+  m_Layer: 0
+  m_Name: CrowdManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1309388313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309388312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76f73209849c0740b6e55d5dc4cc935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrowdManager
+  goblinPrefab: {fileID: 0}
+  playerTransform: {fileID: 1520453627}
+--- !u!4 &1309388314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309388312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7435, y: 0.94109, z: 11.60609}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1520453625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1828,8 +1893,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   forwardSpeed: 8
-  steeringSpeed: 10
-  xLimit: 4.5
+  horizontalSpeed: 12
+  trackWidthLimit: 4
 --- !u!1 &1622109558
 GameObject:
   m_ObjectHideFlags: 0
@@ -2524,3 +2589,4 @@ SceneRoots:
   - {fileID: 817532365}
   - {fileID: 1296497748}
   - {fileID: 899522837}
+  - {fileID: 1309388314}
