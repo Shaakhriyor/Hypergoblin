@@ -1,30 +1,47 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // This line fixes your error!
 
-public class RunnerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement Speeds")]
-    public float forwardSpeed = 10f; // Automatic constant forward movement
-    public float horizontalSpeed = 12f; // Player controlled left/right speed
+    [Header("Speed Settings")]
+    public float forwardSpeed = 5f;
+    public float sideSpeed = 7f;
 
-    [Header("Track Limits")]
-    public float trackWidthLimit = 4f; // Max distance allowed left/right from center
+    [Header("Platform Limits")]
+    public float limitX = 4f;
+
+    void Start()
+    {
+        // Forces the player to start exactly in the middle
+        transform.position = new Vector3(0, transform.position.y, transform.position.z);
+    }
 
     void Update()
     {
-        // 1. Automatic constant forward movement (Player cannot control this)
+        // 1. Automatic forward movement
         transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime, Space.World);
 
-        // 2. Read side-to-side input only (A/D, Left/Right arrows)
-        float sideInput = Input.GetAxis("Horizontal");
+        // 2. Left and Right steering (New Input System)
+        float horizontalInput = 0f;
 
-        // Calculate target side movement
-        Vector3 position = transform.position;
-        position.x += sideInput * horizontalSpeed * Time.deltaTime;
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+            {
+                horizontalInput = 1f;
+            }
+            else if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+            {
+                horizontalInput = -1f;
+            }
+        }
 
-        // Clamp side movement so player cannot walk off track edge
-        position.x = Mathf.Clamp(position.x, -trackWidthLimit, trackWidthLimit);
+        Vector3 newPosition = transform.position;
+        newPosition.x += horizontalInput * sideSpeed * Time.deltaTime;
 
-        // Apply constrained position
-        transform.position = position;
+        // 3. Keep the player on the platform
+        newPosition.x = Mathf.Clamp(newPosition.x, -limitX, limitX);
+
+        transform.position = newPosition;
     }
 }
