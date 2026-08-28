@@ -6,12 +6,12 @@ public class CrowdManager : MonoBehaviour
     public static CrowdManager Instance;
 
     [Header("Goblin Setup")]
-    public GameObject goblinPrefab;
+    public GameObject[] goblinPrefabs; // Assign multiple Goblin Prefabs here!
     public List<GameObject> activeGoblins = new List<GameObject>();
 
     [Header("Cluster & Boundaries")]
     public float clusterRadius = 0.8f;
-    public float limitX = 4f; // Set this to the same limitX number as your PlayerMovement script!
+    public float limitX = 4f;
 
     void Awake()
     {
@@ -28,7 +28,6 @@ public class CrowdManager : MonoBehaviour
 
     void LateUpdate()
     {
-        // Clamp every goblin's world X position so no one floats off the edge
         for (int i = 0; i < activeGoblins.Count; i++)
         {
             if (activeGoblins[i] == null) continue;
@@ -75,12 +74,18 @@ public class CrowdManager : MonoBehaviour
 
     void SpawnGoblins(int count)
     {
+        if (goblinPrefabs == null || goblinPrefabs.Length == 0) return;
+
         for (int i = 0; i < count; i++)
         {
             Vector2 randomCircle = Random.insideUnitCircle * (clusterRadius + (activeGoblins.Count * 0.03f));
             Vector3 spawnOffset = new Vector3(randomCircle.x, 0, randomCircle.y);
 
-            GameObject newGoblin = Instantiate(goblinPrefab, transform.position + spawnOffset, Quaternion.identity);
+            // Pick a random goblin variant from the array
+            int randomIndex = Random.Range(0, goblinPrefabs.Length);
+            GameObject chosenPrefab = goblinPrefabs[randomIndex];
+
+            GameObject newGoblin = Instantiate(chosenPrefab, transform.position + spawnOffset, Quaternion.identity);
             newGoblin.transform.SetParent(transform);
 
             activeGoblins.Add(newGoblin);
