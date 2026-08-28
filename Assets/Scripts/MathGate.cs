@@ -9,44 +9,76 @@ public class MathGate : MonoBehaviour
     public GateType type = GateType.Add;
     public int value = 5;
 
-    [Header("UI Reference")]
+    [Header("References")]
     public TMP_Text displayText;
+    public GameObject sisterGate;
+
+    [Header("Colors")]
+    public MeshRenderer glassRenderer;
+    public Material positiveMaterial; // Blue material
+    public Material negativeMaterial; // Red material
+
+    private bool isTriggered = false;
 
     void Start()
     {
-        UpdateGateText();
+        UpdateGateVisuals();
     }
 
-    void UpdateGateText()
+    void UpdateGateVisuals()
     {
-        if (displayText == null) return;
+        if (displayText == null || glassRenderer == null) return;
 
         switch (type)
         {
             case GateType.Add:
                 displayText.text = "+" + value;
+                glassRenderer.material = positiveMaterial;
                 break;
             case GateType.Multiply:
                 displayText.text = "x" + value;
+                glassRenderer.material = positiveMaterial;
                 break;
             case GateType.Subtract:
                 displayText.text = "-" + value;
+                glassRenderer.material = negativeMaterial;
                 break;
             case GateType.Divide:
-                displayText.text = "/" + value;
+                displayText.text = "÷" + value;
+                glassRenderer.material = negativeMaterial;
                 break;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object that walked into the gate has the "Player" tag
+        if (isTriggered) return;
+
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"Touched gate: {type} {value}");
+            isTriggered = true;
 
-            // Disables the gate so it can't be triggered twice
-            gameObject.SetActive(false);
+            // Trigger the crowd manager math
+            if (CrowdManager.Instance != null)
+            {
+                CrowdManager.Instance.ApplyGateMath(type, value);
+            }
+
+            // Disable sister gate
+            if (sisterGate != null)
+            {
+                sisterGate.SetActive(false);
+            }
+
+            // Disable gate visuals
+            if (transform.parent != null)
+            {
+                transform.parent.gameObject.SetActive(false);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }
