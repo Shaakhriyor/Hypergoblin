@@ -319,6 +319,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreUP
   score: 0
   scoreText: {fileID: 647365610}
+  Taso: 1
+  Check: 0
 --- !u!1 &647365608
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   TasonNumero: 1
   timeRunning: 0
-  TargetTime: 5
+  TargetTime: 15
 --- !u!4 &938297552
 Transform:
   m_ObjectHideFlags: 0
@@ -853,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2969d492a8b941a47bde98519e7a0d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridGenerator
-  columns: 5
+  columns: 7
   rows: 5
   spacing: 1.6
   objectPrefabs:
