@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour
                 timeRunning = false;
                 timePassed = 0.0f;
                 Debug.Log("aika loppui");
-                //SceneManager.LoadScene(TasonNumero);
+                SceneManager.LoadScene(TasonNumero);
             }
         }
 
