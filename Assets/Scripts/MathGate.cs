@@ -6,8 +6,14 @@ public enum GateType { Add, Multiply, Subtract, Divide }
 public class MathGate : MonoBehaviour
 {
     [Header("Gate Settings")]
-    public GateType type = GateType.Add;
-    public int value = 5;
+    public GateType type;
+    public int value;
+
+    [Header("Randomization Ranges")]
+    public Vector2Int addRange = new Vector2Int(1, 10);
+    public Vector2Int multiplyRange = new Vector2Int(2, 4);
+    public Vector2Int subtractRange = new Vector2Int(1, 8);
+    public Vector2Int divideRange = new Vector2Int(2, 3);
 
     [Header("References")]
     public TMP_Text displayText;
@@ -15,14 +21,38 @@ public class MathGate : MonoBehaviour
 
     [Header("Colors")]
     public MeshRenderer glassRenderer;
-    public Material positiveMaterial; // Blue material
-    public Material negativeMaterial; // Red material
+    public Material positiveMaterial;
+    public Material negativeMaterial;
 
     private bool isTriggered = false;
 
     void Start()
     {
+        RandomizeGate();
         UpdateGateVisuals();
+    }
+
+    void RandomizeGate()
+    {
+        // Pick a random operation: Add (0), Multiply (1), Subtract (2), or Divide (3)
+        type = (GateType)Random.Range(0, System.Enum.GetValues(typeof(GateType)).Length);
+
+        // Pick a random number within balanced ranges so numbers don't explode or collapse instantly
+        switch (type)
+        {
+            case GateType.Add:
+                value = Random.Range(addRange.x, addRange.y + 1);
+                break;
+            case GateType.Multiply:
+                value = Random.Range(multiplyRange.x, multiplyRange.y + 1);
+                break;
+            case GateType.Subtract:
+                value = Random.Range(subtractRange.x, subtractRange.y + 1);
+                break;
+            case GateType.Divide:
+                value = Random.Range(divideRange.x, divideRange.y + 1);
+                break;
+        }
     }
 
     void UpdateGateVisuals()
@@ -58,19 +88,16 @@ public class MathGate : MonoBehaviour
         {
             isTriggered = true;
 
-            // Trigger the crowd manager math
             if (CrowdManager.Instance != null)
             {
                 CrowdManager.Instance.ApplyGateMath(type, value);
             }
 
-            // Disable sister gate
             if (sisterGate != null)
             {
                 sisterGate.SetActive(false);
             }
 
-            // Disable gate visuals
             if (transform.parent != null)
             {
                 transform.parent.gameObject.SetActive(false);
