@@ -580,7 +580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   TasonNumero: 1
   timeRunning: 0
-  TargetTime: 15
+  TargetTime: 30
 --- !u!4 &938297552
 Transform:
   m_ObjectHideFlags: 0
