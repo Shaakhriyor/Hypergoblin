@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: c56e28e54cac24b04ae3dd957d214534, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 73324b55f67f54c7bbf43204788b8bbe, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2403,6 +2403,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3453763114511116572, guid: 9106c5cb1d9bd214ab96e11d77ceff1c, type: 3}
+      propertyPath: clusterWidth
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453763114511116572, guid: 9106c5cb1d9bd214ab96e11d77ceff1c, type: 3}
+      propertyPath: mergeThreshold
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453763114511116572, guid: 9106c5cb1d9bd214ab96e11d77ceff1c, type: 3}
+      propertyPath: giantScaleMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3453763114511116572, guid: 9106c5cb1d9bd214ab96e11d77ceff1c, type: 3}
       propertyPath: goblinPrefabs.Array.size
       value: 3
