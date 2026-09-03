@@ -3,36 +3,33 @@ using UnityEngine;
 public class Example : MonoBehaviour
 
 {
-    public int score = 0;
-    public int neededpointstowin = 5;
     bool PlayerHasEnoughGoblins = false;
+    public TeleportToAdd Teleport;
 
 
-    private void Update()
-    {
-        score = score + 1;
-        if (score == neededpointstowin)
-        {
-            BOss();
-        }    
-    }
 
     // T‰st‰ alla oleva osuus olisi osana boss scripti‰
     public void BOss()
     {
         PlayerHasEnoughGoblins = true;
+        Debug.Log("WinCondition");
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if ((collision.gameObject.CompareTag("Player") && PlayerHasEnoughGoblins))
+        if (other.gameObject.CompareTag("Player"))
         {
-            //pelaaja voittaa
-        }
-        else
-        {
-            //h‰vi‰‰
+
+            if (PlayerHasEnoughGoblins)
+            {
+
+
+                
+            }
+            else
+            {
+                Teleport.OpenAdd();
+            }
         }
     }
-
-} 
+}

@@ -34,6 +34,11 @@ public class CrowdManager : MonoBehaviour
     private List<Vector3> pathHistory = new List<Vector3>();
     private Vector3 lastRecordedPos;
 
+
+    // Boss update stuff
+    public Example TemproraryBoss;
+    public int HowManyPointsToWin = 75;
+    private int StopSendingMessages = 0;
     void Awake()
     {
         Instance = this;
@@ -57,6 +62,12 @@ public class CrowdManager : MonoBehaviour
         {
             int totalValue = activeGoblins.Count + (activeGiantGoblins.Count * mergeThreshold);
             crowdText.text = totalValue.ToString();
+            // päivitä
+            if (totalValue >= HowManyPointsToWin && StopSendingMessages == 0)
+            {
+                TemproraryBoss.BOss();
+                StopSendingMessages++;
+            }
         }
     }
 
