@@ -319,7 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreUP
   score: 0
   scoreText: {fileID: 647365610}
-  Taso: 1
+  Taso: 0
   Check: 0
 --- !u!1 &647365608
 GameObject:
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c54e5b5cc15cf644aeb37287def55a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  TasonNumero: 2
+  TasonNumero: 1
   timeRunning: 0
   TargetTime: 30
 --- !u!4 &938297552

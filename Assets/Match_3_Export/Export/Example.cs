@@ -1,18 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Example : MonoBehaviour
 
 {
     bool PlayerHasEnoughGoblins = false;
     public TeleportToAdd Teleport;
-
-
-
-    // Tästä alla oleva osuus olisi osana boss scriptiä
+    public string TeleportName;
     public void BOss()
     {
         PlayerHasEnoughGoblins = true;
-        Debug.Log("WinCondition");
 
     }
     private void OnTriggerEnter(Collider other)
@@ -22,9 +19,7 @@ public class Example : MonoBehaviour
 
             if (PlayerHasEnoughGoblins)
             {
-
-
-                
+                SceneManager.LoadScene(TeleportName);
             }
             else
             {

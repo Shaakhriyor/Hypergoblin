@@ -1125,6 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Example
   Teleport: {fileID: 404858315}
+  TeleportName: YouWon
 --- !u!114 &404858315
 MonoBehaviour:
   m_ObjectHideFlags: 0
