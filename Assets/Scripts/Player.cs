@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // This line fixes your error!
+using UnityEngine.InputSystem; 
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,16 +12,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        // Forces the player to start exactly in the middle
+        
         transform.position = new Vector3(0, transform.position.y, transform.position.z);
     }
 
     void Update()
     {
-        // 1. Automatic forward movement
+        
         transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime, Space.World);
 
-        // 2. Left and Right steering (New Input System)
+        
         float horizontalInput = 0f;
 
         if (Keyboard.current != null)
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newPosition = transform.position;
         newPosition.x += horizontalInput * sideSpeed * Time.deltaTime;
 
-        // 3. Keep the player on the platform
+        
         newPosition.x = Mathf.Clamp(newPosition.x, -limitX, limitX);
 
         transform.position = newPosition;

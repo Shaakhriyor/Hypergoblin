@@ -34,10 +34,10 @@ public class MathGate : MonoBehaviour
 
     void RandomizeGate()
     {
-        // Pick a random operation: Add (0), Multiply (1), Subtract (2), or Divide (3)
+       
         type = (GateType)Random.Range(0, System.Enum.GetValues(typeof(GateType)).Length);
 
-        // Pick a random number within balanced ranges so numbers don't explode or collapse instantly
+       
         switch (type)
         {
             case GateType.Add:
