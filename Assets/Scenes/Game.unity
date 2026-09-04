@@ -1024,7 +1024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a4420ccda34fb5e4bb3be6e69abf0581, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04671979
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a4420ccda34fb5e4bb3be6e69abf0581, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1085,6 +1085,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4420ccda34fb5e4bb3be6e69abf0581, type: 3}
       insertIndex: -1
       addedObject: {fileID: 404858317}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4420ccda34fb5e4bb3be6e69abf0581, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 404858320}
   m_SourcePrefab: {fileID: 100100000, guid: a4420ccda34fb5e4bb3be6e69abf0581, type: 3}
 --- !u!1 &404858311 stripped
 GameObject:
@@ -1180,6 +1183,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectBouncer
   bounceHeight: 0.15
   bounceSpeed: 4
+--- !u!95 &404858320
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404858311}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d9ad0f74d68824711bc800186cf63d22, type: 3}
+  m_Controller: {fileID: 9100000, guid: b24f4be63f3f02e46b8e1aafbac69636, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &411801448
 GameObject:
   m_ObjectHideFlags: 0
